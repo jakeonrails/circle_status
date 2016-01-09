@@ -18,8 +18,10 @@ module CircleStatus
     end
 
     def config
+      token = ENV.fetch('CIRCLE_CI_TOKEN')
+      raise ProjectError, 'no CIRCLE_CI_TOKEN ENV var' if token.nil?
       CircleCi.configure do |config|
-        config.token = ENV.fetch('CIRCLE_CI_TOKEN')
+        config.token = token
       end
     end
 
