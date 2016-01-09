@@ -45,3 +45,15 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
+
+# Add files and commands to this file, like the example:
+#   watch(%r{file/path}) { `command(s)` }
+#
+guard :shell do
+  watch(/bin\/circle-status/) {|m| build_and_run }
+  watch(/\.rb$/) {|m| build_and_run }
+end
+
+def build_and_run
+  `rake install && circle-status`
+end
