@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'circle_status'
+
+CircleCi.configure do |config|
+  config.token = ENV.fetch('CIRCLE_CI_TOKEN')
+end
+
+CircleStatus::Script.new.run

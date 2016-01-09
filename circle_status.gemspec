@@ -32,4 +32,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rspec'
+
+  spec.add_dependency 'circleci'
+  spec.add_dependency 'git'
+  spec.add_dependency 'awesome_print'
 end
