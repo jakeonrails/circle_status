@@ -1,6 +1,8 @@
 module CircleStatus
   class Script
     def run
+      config
+
       puts "Status: #{latest_build_status.upcase.white}"
       puts "Successes: #{successes.size.to_s.green}"
       puts "Failures: #{failures.size.to_s.red}"
@@ -13,6 +15,12 @@ module CircleStatus
       end
     rescue ProjectError => e
       puts "Circle Status failure: #{e.message}"
+    end
+
+    def config
+      CircleCi.configure do |config|
+        config.token = ENV.fetch('CIRCLE_CI_TOKEN')
+      end
     end
 
     def builds
